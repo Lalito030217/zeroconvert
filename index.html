@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZeroConvert — Free Private Client-Side File Converter (Images, PDF & Audio)</title>
+    <meta name="description" content="Convert PNG, JPG, WEBP, merge PDFs, and extract WAV audio 100% locally in your browser. Zero server uploads, instant processing, complete privacy.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ZeroConvert",
+      "operatingSystem": "Web Browser",
+      "applicationCategory": "UtilitiesApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Free client-side browser file converter for PNG, JPG, WEBP images, PDF merging, and WAV audio extraction with zero server uploads."
+    }
+    </script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
+
+    <!-- Top Navigation Bar -->
+    <nav class="w-full border-b border-slate-900 bg-slate-950/80 backdrop-blur-md sticky top-0 z-20">
+        <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center font-bold text-white text-sm shadow-lg shadow-indigo-500/20">
+                    Z
+                </div>
+                <span class="font-bold text-lg tracking-tight text-white">Zero<span class="text-indigo-400">Convert</span></span>
+            </a>
+            <div class="flex items-center gap-4 text-xs text-slate-400">
+                <span class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-medium">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    100% Local Processing
+                </span>
+                <a href="#how-it-works" class="hover:text-white transition">How it Works</a>
+                <a href="#privacy-architecture" class="hover:text-white transition">Privacy Architecture</a>
+                <a href="#faq" class="hover:text-white transition">FAQ</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Top AdSense Leaderboard Slot -->
+    <div class="w-full max-w-4xl mx-auto pt-6 px-4">
+        <div class="w-full h-24 bg-slate-900/40 border border-dashed border-slate-800/80 rounded-xl flex flex-col items-center justify-center text-[11px] text-slate-600 uppercase tracking-widest">
+            <span>Advertisement</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="w-full max-w-2xl mx-auto px-4 my-8 flex-grow">
+        
+        <!-- Hero Header -->
+        <header class="text-center mb-8">
+            <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+                Private Browser File Converter
+            </h1>
+            <p class="text-sm text-slate-400 mt-2.5 max-w-lg mx-auto leading-relaxed">
+                Drop any image, multiple PDFs, or audio/video file below. <span class="text-slate-200 font-medium">Zero bytes are ever uploaded to a server.</span>
+            </p>
+        </header>
+
+        <!-- Single Unified Converter Card -->
+        <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-2xl shadow-black/50 space-y-6">
+            
+            <!-- Unified Drop Zone -->
+            <div id="universalDropZone" class="flex flex-col items-center justify-center w-full h-44 border-2 border-dashed border-slate-700 hover:border-indigo-500 rounded-2xl cursor-pointer bg-slate-950/60 hover:bg-slate-950 transition-all group select-none">
+                <div class="flex flex-col items-center justify-center px-6 text-center pointer-events-none">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mb-3 group-hover:scale-105 transition">
+                        <svg class="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                        </svg>
+                    </div>
+                    <p id="dropZoneTitle" class="text-sm text-slate-200 font-semibold">
+                        Drag & drop files here, or click to select
+                    </p>
+                    <p id="dropZoneSubtitle" class="text-xs text-slate-500 mt-1.5">
+                        Supports PNG, JPG, WEBP • Multiple PDFs to Merge • MP4, MP3, OGG, WAV
+                    </p>
+                </div>
+                <input type="file" id="universalInput" accept="image/png, image/jpeg, image/webp, application/pdf, audio/*, video/*" multiple class="hidden">
+            </div>
+
+            <!-- Dynamic Controls -->
+            <div id="dynamicControls" class="hidden space-y-5 pt-2 border-t border-slate-800/80">
+                
+                <!-- File Info Badge + Reset -->
+                <div class="flex items-center justify-between bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-3">
+                    <div class="flex items-center gap-2.5 overflow-hidden">
+                        <span id="detectedTypeBadge" class="px-2.5 py-0.5 rounded-md text-[11px] font-bold uppercase tracking-wider bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0">
+                            IMAGE
+                        </span>
+                        <span id="selectedFileSummary" class="text-xs text-slate-300 font-medium truncate">
+                            example.png
+                        </span>
+                    </div>
+                    <button type="button" id="btnClearFiles" class="text-[11px] text-slate-400 hover:text-red-400 font-medium ml-3 shrink-0 cursor-pointer transition">
+                        Clear
+                    </button>
+                </div>
+
+                <!-- Image Specific Options -->
+                <div id="imageOptions" class="hidden grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Output Format</label>
+                        <select id="imageAction" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-xs text-slate-200 focus:outline-none focus:border-indigo-500 transition">
+                            <option value="image/webp">Convert to WEBP (Optimized)</option>
+                            <option value="image/png">Convert to PNG (Lossless)</option>
+                            <option value="image/jpeg">Convert to JPG (Standard)</option>
+                            <option value="topdf">Export Image to PDF</option>
+                        </select>
+                    </div>
+                    <div id="qualityWrapper">
+                        <div class="flex justify-between items-center mb-2">
+                            <label class="text-xs font-semibold text-slate-300 uppercase tracking-wider">Quality</label>
+                            <span id="qualityVal" class="text-xs font-bold text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded">90%</span>
+                        </div>
+                        <input type="range" id="imageQuality" min="0.1" max="1" step="0.05" value="0.9" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-indigo-500 mt-2.5">
+                        <p class="text-[10px] text-slate-500 mt-1.5">Applies to JPG & WEBP compression</p>
+                    </div>
+                </div>
+
+                <!-- Primary Action Button -->
+                <button type="button" id="btnConvertAction" class="w-full py-3.5 bg-indigo-600 hover:bg-indigo-500 active:scale-[0.99] text-white text-xs font-semibold rounded-xl transition cursor-pointer shadow-lg shadow-indigo-600/25">
+                    Convert & Download File
+                </button>
+            </div>
+
+            <!-- Status & Feedback Bar -->
+            <div id="statusBox" class="hidden rounded-xl p-3.5 text-center text-xs font-medium border"></div>
+        </div>
+
+        <!-- Middle In-Content AdSense Slot -->
+        <div class="w-full my-8">
+            <div class="w-full h-24 bg-slate-900/40 border border-dashed border-slate-800/80 rounded-xl flex items-center justify-center text-[11px] text-slate-600 uppercase tracking-widest">
+                <span>Advertisement</span>
+            </div>
+        </div>
+
+        <!-- Editorial Content & FAQ -->
+        <article class="space-y-6 text-slate-400 text-xs leading-relaxed">
+            
+            <section id="privacy-architecture" class="bg-slate-900/50 border border-slate-800/80 rounded-2xl p-6 sm:p-7 space-y-3 scroll-mt-20">
+                <h2 class="text-base font-bold text-slate-100">Why Zero-Server Conversion Matters for Privacy</h2>
+                <p>
+                    Most online file converters require you to upload your personal photos, financial PDF statements, or private recordings to a remote cloud server before processing them. Even when platforms claim to delete files after a few hours, your data still travels across external networks and resides temporarily on third-party infrastructure.
+                </p>
+                <p>
+                    <strong class="text-slate-200">ZeroConvert</strong> eliminates this risk entirely. Built on modern HTML5 Canvas, Web Audio API, and client-side WebAssembly PDF libraries, every conversion executes exclusively inside your browser's local memory. Your files never leave your computer or smartphone.
+                </p>
+            </section>
+
+            <section id="how-it-works" class="grid grid-cols-1 sm:grid-cols-3 gap-4 scroll-mt-20">
+                <div class="bg-slate-900/50 border border-slate-800/80 rounded-2xl p-5">
+                    <div class="text-indigo-400 font-bold text-sm mb-1.5">Image & WEBP Engine</div>
+                    <p class="text-slate-400">Convert between PNG, JPG, and next-gen WEBP formats with adjustable compression, or wrap high-resolution images directly into clean PDF pages.</p>
+                </div>
+                <div class="bg-slate-900/50 border border-slate-800/80 rounded-2xl p-5">
+                    <div class="text-indigo-400 font-bold text-sm mb-1.5">Local PDF Merger</div>
+                    <p class="text-slate-400">Combine contracts, invoices, and scanned pages into a single unified PDF document instantaneously without uploading confidential paperwork.</p>
+                </div>
+                <div class="bg-slate-900/50 border border-slate-800/80 rounded-2xl p-5">
+                    <div class="text-indigo-400 font-bold text-sm mb-1.5">Audio Extractor</div>
+                    <p class="text-slate-400">Decode audio streams from MP4 video files or compressed MP3 tracks and export lossless RIFF WAV waveforms directly in your browser.</p>
+                </div>
+            </section>
+
+            <section id="faq" class="bg-slate-900/50 border border-slate-800/80 rounded-2xl p-6 sm:p-7 space-y-4 scroll-mt-20">
+                <h2 class="text-base font-bold text-slate-100">Frequently Asked Questions</h2>
+                
+                <div class="border-b border-slate-800/80 pb-3.5">
+                    <h3 class="font-semibold text-slate-200 text-xs">Are my files ever uploaded to a cloud server?</h3>
+                    <p class="mt-1">No. You can even disconnect your internet connection after loading this page and every conversion tool will continue working normally. Zero bytes are transmitted over the network.</p>
+                </div>
+
+                <div class="border-b border-slate-800/80 pb-3.5">
+                    <h3 class="font-semibold text-slate-200 text-xs">Is there a maximum file size limit?</h3>
+                    <p class="mt-1">Because there are no server bandwidth costs or upload queues, ZeroConvert imposes no artificial file size caps. Conversion speed and capacity depend strictly on your device's available RAM and processor.</p>
+                </div>
+
+                <div class="border-b border-slate-800/80 pb-3.5">
+                    <h3 class="font-semibold text-slate-200 text-xs">Why convert images to WEBP format?</h3>
+                    <p class="mt-1">WEBP reduces image file sizes by 25% to 35% compared to traditional JPEG and PNG formats while preserving sharp visual detail, making it ideal for websites, portfolios, and faster page loads.</p>
+                </div>
+
+                <div>
+                    <h3 class="font-semibold text-slate-200 text-xs">Can I merge password-protected PDF files?</h3>
+                    <p class="mt-1">Encrypted PDFs cannot be parsed without unlocking them first. Remove password restrictions from your PDF files prior to merging them locally.</p>
+                </div>
+            </section>
+
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full border-t border-slate-900 bg-slate-950 py-8 px-4 mt-12">
+        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
+            <div>
+                <span class="font-semibold text-slate-300">ZeroConvert</span> — 100% Client-Side Browser Utilities
+            </div>
+            <div class="flex flex-wrap justify-center gap-5">
+                <a href="/privacy.html" class="hover:text-slate-300 transition">Privacy Policy</a>
+                <a href="/terms.html" class="hover:text-slate-300 transition">Terms of Service</a>
+                <a href="/contact.html" class="hover:text-slate-300 transition">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Prevent browser default file opening
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(evt => {
+            window.addEventListener(evt, (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+            }, false);
+        });
+
+        let activeFiles = [];
+        let activeMode = null;
+
+        const dropZone = document.getElementById('universalDropZone');
+        const fileInput = document.getElementById('universalInput');
+        const dynamicControls = document.getElementById('dynamicControls');
+        const detectedTypeBadge = document.getElementById('detectedTypeBadge');
+        const selectedFileSummary = document.getElementById('selectedFileSummary');
+        const imageOptions = document.getElementById('imageOptions');
+        const btnConvertAction = document.getElementById('btnConvertAction');
+        const statusBox = document.getElementById('statusBox');
+
+        function showStatus(msg, type = 'info') {
+            statusBox.textContent = msg;
+            statusBox.classList.remove('hidden', 'bg-amber-500/10', 'text-amber-300', 'border-amber-500/30', 'bg-emerald-500/10', 'text-emerald-300', 'border-emerald-500/30', 'bg-red-500/10', 'text-red-300', 'border-red-500/30');
+            if (type === 'success') {
+                statusBox.classList.add('bg-emerald-500/10', 'text-emerald-300', 'border-emerald-500/30');
+            } else if (type === 'error') {
+                statusBox.classList.add('bg-red-500/10', 'text-red-300', 'border-red-500/30');
+            } else {
+                statusBox.classList.add('bg-amber-500/10', 'text-amber-300', 'border-amber-500/30');
+            }
+        }
+
+        function triggerDownload(blob, fileName) {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(url), 1000);
+        }
+
+        function handleIncomingFiles(fileList) {
+            const files = Array.from(fileList);
+            if (!files.length) return;
+
+            statusBox.classList.add('hidden');
+            const first = files[0];
+            const nameLower = first.name.toLowerCase();
+
+            if (first.type.startsWith('image/') || /\.(png|jpe?g|webp)$/i.test(nameLower)) {
+                activeMode = 'image';
+                activeFiles = [first];
+                detectedTypeBadge.textContent = 'IMAGE';
+                selectedFileSummary.textContent = first.name;
+                imageOptions.classList.remove('hidden');
+                btnConvertAction.textContent = 'Convert & Download Image';
+                dynamicControls.classList.remove('hidden');
+            } else if (first.type === 'application/pdf' || nameLower.endsWith('.pdf')) {
+                const pdfs = files.filter(f => f.type === 'application/pdf' || f.name.toLowerCase().endsWith('.pdf'));
+                if (pdfs.length < 2) {
+                    dynamicControls.classList.add('hidden');
+                    return showStatus('Drop or select at least 2 PDF files to merge them.', 'error');
+                }
+                activeMode = 'pdf';
+                activeFiles = pdfs;
+                detectedTypeBadge.textContent = 'PDF MERGE';
+                selectedFileSummary.textContent = `${pdfs.length} PDF documents ready to merge`;
+                imageOptions.classList.add('hidden');
+                btnConvertAction.textContent = `Merge ${pdfs.length} PDFs & Download`;
+                dynamicControls.classList.remove('hidden');
+            } else if (first.type.startsWith('audio/') || first.type.startsWith('video/') || /\.(mp3|mp4|wav|ogg|m4a|webm|mov)$/i.test(nameLower)) {
+                activeMode = 'audio';
+                activeFiles = [first];
+                detectedTypeBadge.textContent = 'AUDIO EXTRACT';
+                selectedFileSummary.textContent = first.name;
+                imageOptions.classList.add('hidden');
+                btnConvertAction.textContent = 'Extract Uncompressed WAV & Download';
+                dynamicControls.classList.remove('hidden');
+            } else {
+                dynamicControls.classList.add('hidden');
+                showStatus('Unsupported file format. Please drop an image, PDFs, or audio/video file.', 'error');
+            }
+        }
+
+        dropZone.addEventListener('click', () => {
+            fileInput.value = '';
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            handleIncomingFiles(e.target.files);
+        });
+
+        dropZone.addEventListener('dragenter', () => {
+            dropZone.classList.add('border-indigo-500', 'bg-indigo-500/10');
+        });
+        dropZone.addEventListener('dragover', () => {
+            dropZone.classList.add('border-indigo-500', 'bg-indigo-500/10');
+        });
+        dropZone.addEventListener('dragleave', (e) => {
+            if (!dropZone.contains(e.relatedTarget)) {
+                dropZone.classList.remove('border-indigo-500', 'bg-indigo-500/10');
+            }
+        });
+        dropZone.addEventListener('drop', (e) => {
+            dropZone.classList.remove('border-indigo-500', 'bg-indigo-500/10');
+            if (e.dataTransfer && e.dataTransfer.files) {
+                handleIncomingFiles(e.dataTransfer.files);
+            }
+        });
+
+        document.getElementById('btnClearFiles').addEventListener('click', () => {
+            activeFiles = [];
+            activeMode = null;
+            fileInput.value = '';
+            dynamicControls.classList.add('hidden');
+            statusBox.classList.add('hidden');
+        });
+
+        document.getElementById('imageQuality').addEventListener('input', (e) => {
+            document.getElementById('qualityVal').textContent = `${Math.round(e.target.value * 100)}%`;
+        });
+
+        document.getElementById('imageAction').addEventListener('change', (e) => {
+            const val = e.target.value;
+            const qWrap = document.getElementById('qualityWrapper');
+            if (val === 'image/png' || val === 'topdf') {
+                qWrap.classList.add('opacity-40', 'pointer-events-none');
+            } else {
+                qWrap.classList.remove('opacity-40', 'pointer-events-none');
+            }
+        });
+
+        btnConvertAction.addEventListener('click', async () => {
+            if (!activeFiles.length || !activeMode) return;
+
+            if (activeMode === 'image') {
+                const file = activeFiles[0];
+                const action = document.getElementById('imageAction').value;
+                const quality = parseFloat(document.getElementById('imageQuality').value);
+                const baseName = file.name.replace(/\.[^/.]+$/, "");
+                showStatus('Processing image locally in your browser...', 'info');
+
+                try {
+                    const imgBitmap = await createImageBitmap(file);
+                    const canvas = document.createElement('canvas');
+                    canvas.width = imgBitmap.width;
+                    canvas.height = imgBitmap.height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(imgBitmap, 0, 0);
+
+                    if (action === 'topdf') {
+                        const pdfDoc = await PDFLib.PDFDocument.create();
+                        const dataUrl = canvas.toDataURL('image/png');
+                        const res = await fetch(dataUrl);
+                        const bytes = await res.arrayBuffer();
+                        const embeddedImage = await pdfDoc.embedPng(bytes);
+
+                        const page = pdfDoc.addPage([imgBitmap.width, imgBitmap.height]);
+                        page.drawImage(embeddedImage, { x: 0, y: 0, width: imgBitmap.width, height: imgBitmap.height });
+
+                        const pdfBytes = await pdfDoc.save();
+                        triggerDownload(new Blob([pdfBytes], { type: 'application/pdf' }), `${baseName}.pdf`);
+                        showStatus(`Done! Downloaded ${baseName}.pdf`, 'success');
+                    } else {
+                        const dataUrl = canvas.toDataURL(action, quality);
+                        const res = await fetch(dataUrl);
+                        const blob = await res.blob();
+                        const ext = action === 'image/jpeg' ? 'jpg' : action.split('/')[1];
+                        triggerDownload(blob, `${baseName}.${ext}`);
+                        showStatus(`Done! Downloaded ${baseName}.${ext}`, 'success');
+                    }
+                } catch (err) {
+                    console.error(err);
+                    showStatus('Error processing image: ' + err.message, 'error');
+                }
+            } else if (activeMode === 'pdf') {
+                showStatus('Merging PDF documents in memory...', 'info');
+                try {
+                    const mergedPdf = await PDFLib.PDFDocument.create();
+                    for (const file of activeFiles) {
+                        const arrayBuffer = await file.arrayBuffer();
+                        const pdf = await PDFLib.PDFDocument.load(arrayBuffer);
+                        const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
+                        copiedPages.forEach((page) => mergedPdf.addPage(page));
+                    }
+                    const mergedBytes = await mergedPdf.save();
+                    triggerDownload(new Blob([mergedBytes], { type: 'application/pdf' }), 'merged-document.pdf');
+                    showStatus('Done! Downloaded merged-document.pdf', 'success');
+                } catch (err) {
+                    console.error(err);
+                    showStatus('Error merging PDFs. Make sure none are password-protected.', 'error');
+                }
+            } else if (activeMode === 'audio') {
+                const file = activeFiles[0];
+                const baseName = file.name.replace(/\.[^/.]+$/, "");
+                showStatus('Decoding audio waveform locally...', 'info');
+
+                try {
+                    const arrayBuffer = await file.arrayBuffer();
+                    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                    const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
+                    const wavBlob = audioBufferToWav(audioBuffer);
+                    triggerDownload(wavBlob, `${baseName}.wav`);
+                    showStatus(`Done! Downloaded ${baseName}.wav`, 'success');
+                } catch (err) {
+                    console.error(err);
+                    showStatus('Error extracting audio. Format may not be supported by your browser.', 'error');
+                }
+            }
+        });
+
+        function audioBufferToWav(buffer) {
+            const numOfChan = buffer.numberOfChannels;
+            const length = buffer.length * numOfChan * 2 + 44;
+            const out = new ArrayBuffer(length);
+            const view = new DataView(out);
+            const channels = [];
+            let sample = 0;
+            let pos = 0;
+
+            function setUint16(data) { view.setUint16(pos, data, true); pos += 2; }
+            function setUint32(data) { view.setUint32(pos, data, true); pos += 4; }
+
+            setUint32(0x46464952); // "RIFF"
+            setUint32(length - 8);
+            setUint32(0x45564157); // "WAVE"
+            setUint32(0x20746d66); // "fmt "
+            setUint32(16);
+            setUint16(1); // PCM
+            setUint16(numOfChan);
+            setUint32(buffer.sampleRate);
+            setUint32(buffer.sampleRate * 2 * numOfChan);
+            setUint16(numOfChan * 2);
+            setUint16(16);
+            setUint32(0x61746164); // "data"
+            setUint32(length - pos - 4);
+
+            for (let i = 0; i < buffer.numberOfChannels; i++) {
+                channels.push(buffer.getChannelData(i));
+            }
+
+            let offset = 0;
+            while (pos < length) {
+                for (let i = 0; i < numOfChan; i++) {
+                    sample = Math.max(-1, Math.min(1, channels[i][offset]));
+                    sample = (0.5 + sample < 0 ? sample * 32768 : sample * 32767) | 0;
+                    view.setInt16(pos, sample, true);
+                    pos += 2;
+                }
+                offset++;
+            }
+
+            return new Blob([out], { type: 'audio/wav' });
+        }
+    </script>
+</body>
+</html>
