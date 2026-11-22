@@ -1,22 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Us - ZeroConvert</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact — ZeroConvert</title>
+    <meta name="description" content="Contact ZeroConvert for support, bug reports, or business inquiries.">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-slate-950 text-slate-300 font-sans antialiased">
-  <div class="max-w-3xl mx-auto px-6 py-16">
-    <a href="index.html" class="text-indigo-400 hover:text-indigo-300 text-sm">&larr; Back to ZeroConvert</a>
-    <h1 class="text-3xl font-bold text-white mt-6 mb-4">Contact &amp; Support</h1>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
 
-    <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 space-y-4 text-sm">
-      <p>Have a question, feedback, or a new file format suggestion for ZeroConvert?</p>
-      <p>Reach out to us via email and we will get back to you as soon as possible:</p>
-      <p class="text-lg font-semibold text-indigo-400">support@zeroconvert.it.com</p>
-      <p class="text-xs text-slate-500">Typical response time: 24–48 business hours.</p>
-    </div>
-  </div>
+    <!-- Top Navigation Bar -->
+    <nav class="w-full border-b border-slate-900 bg-slate-950/80 backdrop-blur-md sticky top-0 z-20">
+        <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center font-bold text-white text-sm shadow-lg shadow-indigo-500/20">
+                    Z
+                </div>
+                <span class="font-bold text-lg tracking-tight text-white">Zero<span class="text-indigo-400">Convert</span></span>
+            </a>
+            <a href="/" class="text-xs text-slate-400 hover:text-white transition">← Back to Converter</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="w-full max-w-2xl mx-auto px-4 my-10 flex-grow">
+        <div class="bg-slate-900/70 border border-slate-800/80 rounded-2xl p-6 sm:p-10 space-y-6 text-slate-300 text-sm leading-relaxed">
+            <header class="border-b border-slate-800 pb-6">
+                <h1 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Contact Us</h1>
+                <p class="text-xs text-slate-400 mt-2">Questions, bug reports, feature suggestions, or partnership inquiries.</p>
+            </header>
+
+            <div class="space-y-4">
+                <p>
+                    Have feedback about <strong class="text-white">ZeroConvert</strong> or encountered an issue converting a specific file format in your browser? We'd love to hear from you.
+                </p>
+
+                <div class="bg-slate-950/90 border border-slate-800 rounded-xl p-5 space-y-2">
+                    <div class="text-xs font-semibold uppercase tracking-wider text-indigo-400">Direct Email</div>
+                    <p class="text-base font-medium text-white">
+                        <a href="mailto:contact@zeroconvert.online" class="hover:text-indigo-300 transition">contact@zeroconvert.online</a>
+                    </p>
+                    <p class="text-xs text-slate-500">We typically respond within 24–48 business hours.</p>
+                </div>
+
+                <div class="bg-slate-950/50 border border-slate-800/70 rounded-xl p-5 space-y-1.5 text-xs text-slate-400">
+                    <div class="font-semibold text-slate-200">Before reporting a conversion issue:</div>
+                    <p>Because ZeroConvert runs 100% locally in your browser, please include your browser name/version (e.g., Chrome, Firefox, Safari, Edge) and the file type you were converting so we can reproduce it quickly.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full border-t border-slate-900 bg-slate-950 py-8 px-4 mt-12">
+        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
+            <div>
+                <span class="font-semibold text-slate-300">ZeroConvert</span> — 100% Client-Side Browser Utilities
+            </div>
+            <div class="flex flex-wrap justify-center gap-5">
+                <a href="/privacy.html" class="hover:text-slate-300 transition">Privacy Policy</a>
+                <a href="/terms.html" class="hover:text-slate-300 transition">Terms of Service</a>
+                <a href="/contact.html" class="text-slate-300 font-medium">Contact</a>
+            </div>
+        </div>
+    </footer>
+
 </body>
 </html>
