@@ -43,57 +43,46 @@
             <div class="flex items-center gap-4 text-xs text-slate-400">
                 <span class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-medium">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                    100% Local Processing
+                    <span data-i18n="nav_badge">100% Local Processing</span>
                 </span>
-                <a href="#how-it-works" class="hover:text-white transition">How it Works</a>
-                <a href="#privacy-architecture" class="hover:text-white transition">Privacy Architecture</a>
-                <a href="#faq" class="hover:text-white transition">FAQ</a>
-                <div id="lang-switcher" class=" flex items-center gap-1 bg-slate-900/95 border border-slate-800 rounded-xl px-2 py-1.5 shadow-lg">
-  <button type="button" onclick="setLanguage('en')" data-lang-btn="en" title="English" aria-label="English" class="p-1 rounded-lg hover:bg-slate-800 transition cursor-pointer">
-    <!-- US Flag -->
-    <svg class="w-5 h-3.5 rounded-[2px] block" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg">
-      <rect width="24" height="16" fill="#fff"/>
-      <path fill="#b22234" d="M0 0h24v1.23H0zm0 2.46h24v1.23H0zm0 2.46h24v1.23H0zm0 2.46h24v1.23H0zm0 2.46h24v1.23H0zm0 2.46h24v1.23H0zm0 2.46h24V16H0z"/>
-      <rect width="10" height="8.6" fill="#3c3b6e"/>
-    </svg>
-  </button>
-
-  <button type="button" onclick="setLanguage('es')" data-lang-btn="es" title="Español" aria-label="Español" class="p-1 rounded-lg hover:bg-slate-800 transition cursor-pointer">
-    <!-- Spain Flag -->
-    <svg class="w-5 h-3.5 rounded-[2px] block" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg">
-      <rect width="24" height="16" fill="#aa151b"/>
-      <rect y="4" width="24" height="8" fill="#f1bf00"/>
-    </svg>
-  </button>
-
-  <button type="button" onclick="setLanguage('pt')" data-lang-btn="pt" title="Português" aria-label="Português" class="p-1 rounded-lg hover:bg-slate-800 transition cursor-pointer">
-    <!-- Brazil Flag -->
-    <svg class="w-5 h-3.5 rounded-[2px] block" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg">
-      <rect width="24" height="16" fill="#009b3a"/>
-      <polygon points="12,2 21.5,8 12,14 2.5,8" fill="#ffdf00"/>
-      <circle cx="12" cy="8" r="3.4" fill="#002776"/>
-    </svg>
-  </button>
-
-  <button type="button" onclick="setLanguage('it')" data-lang-btn="it" title="Italiano" aria-label="Italiano" class="p-1 rounded-lg hover:bg-slate-800 transition cursor-pointer">
-    <!-- Italy Flag -->
-    <svg class="w-5 h-3.5 rounded-[2px] block" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg">
-      <rect width="8" height="16" x="0" fill="#009246"/>
-      <rect width="8" height="16" x="8" fill="#fff"/>
-      <rect width="8" height="16" x="16" fill="#ce2b37"/>
-    </svg>
-  </button>
-
-  <button type="button" onclick="setLanguage('ja')" data-lang-btn="ja" title="日本語" aria-label="日本語" class="p-1 rounded-lg hover:bg-slate-800 transition cursor-pointer">
-    <!-- Japan Flag -->
-    <svg class="w-5 h-3.5 rounded-[2px] block" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg">
-      <rect width="24" height="16" fill="#fff"/>
-      <circle cx="12" cy="8" r="4.2" fill="#bc002d"/>
-    </svg>
-  </button>
-</div>
-  
-</div>
+                <a href="#how-it-works" data-i18n="nav_how" class="hover:text-white transition">How it Works</a>
+                <a href="#privacy-architecture" data-i18n="nav_privacy" class="hover:text-white transition">Privacy Architecture</a>
+                <a href="#faq" data-i18n="nav_faq" class="hover:text-white transition">FAQ</a>
+                <div id="lang-switcher" class="flex items-center gap-1 bg-slate-900/95 border border-slate-800 rounded-xl px-2 py-1.5 shadow-lg">
+                    <button type="button" onclick="setLanguage('en')" data-lang-btn="en" title="English" aria-label="English" class="p-1 rounded-lg hover:bg-slate-800 transition cursor-pointer">
+                        <svg class="w-5 h-3.5 rounded-[2px] block" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="24" height="16" fill="#fff"/>
+                            <path fill="#b22234" d="M0 0h24v1.23H0zm0 2.46h24v1.23H0zm0 2.46h24v1.23H0zm0 2.46h24v1.23H0zm0 2.46h24v1.23H0zm0 2.46h24v1.23H0zm0 2.46h24V16H0z"/>
+                            <rect width="10" height="8.6" fill="#3c3b6e"/>
+                        </svg>
+                    </button>
+                    <button type="button" onclick="setLanguage('es')" data-lang-btn="es" title="Español" aria-label="Español" class="p-1 rounded-lg hover:bg-slate-800 transition cursor-pointer">
+                        <svg class="w-5 h-3.5 rounded-[2px] block" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="24" height="16" fill="#aa151b"/>
+                            <rect y="4" width="24" height="8" fill="#f1bf00"/>
+                        </svg>
+                    </button>
+                    <button type="button" onclick="setLanguage('pt')" data-lang-btn="pt" title="Português" aria-label="Português" class="p-1 rounded-lg hover:bg-slate-800 transition cursor-pointer">
+                        <svg class="w-5 h-3.5 rounded-[2px] block" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="24" height="16" fill="#009b3a"/>
+                            <polygon points="12,2 21.5,8 12,14 2.5,8" fill="#ffdf00"/>
+                            <circle cx="12" cy="8" r="3.4" fill="#002776"/>
+                        </svg>
+                    </button>
+                    <button type="button" onclick="setLanguage('it')" data-lang-btn="it" title="Italiano" aria-label="Italiano" class="p-1 rounded-lg hover:bg-slate-800 transition cursor-pointer">
+                        <svg class="w-5 h-3.5 rounded-[2px] block" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="8" height="16" x="0" fill="#009246"/>
+                            <rect width="8" height="16" x="8" fill="#fff"/>
+                            <rect width="8" height="16" x="16" fill="#ce2b37"/>
+                        </svg>
+                    </button>
+                    <button type="button" onclick="setLanguage('ja')" data-lang-btn="ja" title="日本語" aria-label="日本語" class="p-1 rounded-lg hover:bg-slate-800 transition cursor-pointer">
+                        <svg class="w-5 h-3.5 rounded-[2px] block" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="24" height="16" fill="#fff"/>
+                            <circle cx="12" cy="8" r="4.2" fill="#bc002d"/>
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
     </nav>
@@ -101,7 +90,7 @@
     <!-- Top AdSense Leaderboard Slot -->
     <div class="w-full max-w-4xl mx-auto pt-6 px-4">
         <div class="w-full h-24 bg-slate-900/40 border border-dashed border-slate-800/80 rounded-xl flex flex-col items-center justify-center text-[11px] text-slate-600 uppercase tracking-widest">
-            <span>Advertisement</span>
+            <span data-i18n="ad_label">Advertisement</span>
         </div>
     </div>
 
@@ -110,13 +99,12 @@
         
         <!-- Hero Header -->
         <header class="text-center mb-8">
-            <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+            <h1 data-i18n="hero_title" class="text-3xl sm:text-4xl font-bold tracking-tight text-white">
                 Private Browser File Converter
             </h1>
             <p class="text-sm text-slate-400 mt-2.5 max-w-lg mx-auto leading-relaxed">
-                Drop any image, multiple PDFs, or audio/video file below. <span class="text-slate-200 font-medium">Zero bytes are ever uploaded to a server.</span>
+                <span data-i18n="hero_sub_1">Drop any image, multiple PDFs, or audio/video file below.</span> <span data-i18n="hero_sub_2" class="text-slate-200 font-medium">Zero bytes are ever uploaded to a server.</span>
             </p>
-            
         </header>
 
         <!-- Single Unified Converter Card -->
@@ -130,10 +118,10 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
                         </svg>
                     </div>
-                    <p id="dropZoneTitle" class="text-sm text-slate-200 font-semibold">
+                    <p id="dropZoneTitle" data-i18n="drop_title" class="text-sm text-slate-200 font-semibold">
                         Drag & drop files here, or click to select
                     </p>
-                    <p id="dropZoneSubtitle" class="text-xs text-slate-500 mt-1.5">
+                    <p id="dropZoneSubtitle" data-i18n="drop_sub" class="text-xs text-slate-500 mt-1.5">
                         Supports PNG, JPG, WEBP • Multiple PDFs to Merge • MP4, MP3, OGG, WAV
                     </p>
                 </div>
@@ -153,7 +141,7 @@
                             example.png
                         </span>
                     </div>
-                    <button type="button" id="btnClearFiles" class="text-[11px] text-slate-400 hover:text-red-400 font-medium ml-3 shrink-0 cursor-pointer transition">
+                    <button type="button" id="btnClearFiles" data-i18n="btn_clear" class="text-[11px] text-slate-400 hover:text-red-400 font-medium ml-3 shrink-0 cursor-pointer transition">
                         Clear
                     </button>
                 </div>
@@ -161,26 +149,26 @@
                 <!-- Image Specific Options -->
                 <div id="imageOptions" class="hidden grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Output Format</label>
+                        <label data-i18n="label_format" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Output Format</label>
                         <select id="imageAction" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-xs text-slate-200 focus:outline-none focus:border-indigo-500 transition">
-                            <option value="image/webp">Convert to WEBP (Optimized)</option>
-                            <option value="image/png">Convert to PNG (Lossless)</option>
-                            <option value="image/jpeg">Convert to JPG (Standard)</option>
-                            <option value="topdf">Export Image to PDF</option>
+                            <option value="image/webp" data-i18n="opt_webp">Convert to WEBP (Optimized)</option>
+                            <option value="image/png" data-i18n="opt_png">Convert to PNG (Lossless)</option>
+                            <option value="image/jpeg" data-i18n="opt_jpg">Convert to JPG (Standard)</option>
+                            <option value="topdf" data-i18n="opt_pdf">Export Image to PDF</option>
                         </select>
                     </div>
                     <div id="qualityWrapper">
                         <div class="flex justify-between items-center mb-2">
-                            <label class="text-xs font-semibold text-slate-300 uppercase tracking-wider">Quality</label>
+                            <label data-i18n="label_quality" class="text-xs font-semibold text-slate-300 uppercase tracking-wider">Quality</label>
                             <span id="qualityVal" class="text-xs font-bold text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded">90%</span>
                         </div>
                         <input type="range" id="imageQuality" min="0.1" max="1" step="0.05" value="0.9" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-indigo-500 mt-2.5">
-                        <p class="text-[10px] text-slate-500 mt-1.5">Applies to JPG & WEBP compression</p>
+                        <p data-i18n="quality_hint" class="text-[10px] text-slate-500 mt-1.5">Applies to JPG & WEBP compression</p>
                     </div>
                 </div>
 
                 <!-- Primary Action Button -->
-                <button type="button" id="btnConvertAction" class="w-full py-3.5 bg-indigo-600 hover:bg-indigo-500 active:scale-[0.99] text-white text-xs font-semibold rounded-xl transition cursor-pointer shadow-lg shadow-indigo-600/25">
+                <button type="button" id="btnConvertAction" data-i18n="btn_convert" class="w-full py-3.5 bg-indigo-600 hover:bg-indigo-500 active:scale-[0.99] text-white text-xs font-semibold rounded-xl transition cursor-pointer shadow-lg shadow-indigo-600/25">
                     Convert & Download File
                 </button>
             </div>
@@ -192,7 +180,7 @@
         <!-- Middle In-Content AdSense Slot -->
         <div class="w-full my-8">
             <div class="w-full h-24 bg-slate-900/40 border border-dashed border-slate-800/80 rounded-xl flex items-center justify-center text-[11px] text-slate-600 uppercase tracking-widest">
-                <span>Advertisement</span>
+                <span data-i18n="ad_label">Advertisement</span>
             </div>
         </div>
 
@@ -200,51 +188,51 @@
         <article class="space-y-6 text-slate-400 text-xs leading-relaxed">
             
             <section id="privacy-architecture" class="bg-slate-900/50 border border-slate-800/80 rounded-2xl p-6 sm:p-7 space-y-3 scroll-mt-20">
-                <h2 class="text-base font-bold text-slate-100">Why Zero-Server Conversion Matters for Privacy</h2>
-                <p>
+                <h2 data-i18n="priv_title" class="text-base font-bold text-slate-100">Why Zero-Server Conversion Matters for Privacy</h2>
+                <p data-i18n="priv_p1">
                     Most online file converters require you to upload your personal photos, financial PDF statements, or private recordings to a remote cloud server before processing them. Even when platforms claim to delete files after a few hours, your data still travels across external networks and resides temporarily on third-party infrastructure.
                 </p>
-                <p>
-                    <strong class="text-slate-200">ZeroConvert</strong> eliminates this risk entirely. Built on modern HTML5 Canvas, Web Audio API, and client-side WebAssembly PDF libraries, every conversion executes exclusively inside your browser's local memory. Your files never leave your computer or smartphone.
+                <p data-i18n="priv_p2">
+                    ZeroConvert eliminates this risk entirely. Built on modern HTML5 Canvas, Web Audio API, and client-side WebAssembly PDF libraries, every conversion executes exclusively inside your browser's local memory. Your files never leave your computer or smartphone.
                 </p>
             </section>
 
             <section id="how-it-works" class="grid grid-cols-1 sm:grid-cols-3 gap-4 scroll-mt-20">
                 <div class="bg-slate-900/50 border border-slate-800/80 rounded-2xl p-5">
-                    <div class="text-indigo-400 font-bold text-sm mb-1.5">Image & WEBP Engine</div>
-                    <p class="text-slate-400">Convert between PNG, JPG, and next-gen WEBP formats with adjustable compression, or wrap high-resolution images directly into clean PDF pages.</p>
+                    <div data-i18n="feat1_title" class="text-indigo-400 font-bold text-sm mb-1.5">Image & WEBP Engine</div>
+                    <p data-i18n="feat1_desc" class="text-slate-400">Convert between PNG, JPG, and next-gen WEBP formats with adjustable compression, or wrap high-resolution images directly into clean PDF pages.</p>
                 </div>
                 <div class="bg-slate-900/50 border border-slate-800/80 rounded-2xl p-5">
-                    <div class="text-indigo-400 font-bold text-sm mb-1.5">Local PDF Merger</div>
-                    <p class="text-slate-400">Combine contracts, invoices, and scanned pages into a single unified PDF document instantaneously without uploading confidential paperwork.</p>
+                    <div data-i18n="feat2_title" class="text-indigo-400 font-bold text-sm mb-1.5">Local PDF Merger</div>
+                    <p data-i18n="feat2_desc" class="text-slate-400">Combine contracts, invoices, and scanned pages into a single unified PDF document instantaneously without uploading confidential paperwork.</p>
                 </div>
                 <div class="bg-slate-900/50 border border-slate-800/80 rounded-2xl p-5">
-                    <div class="text-indigo-400 font-bold text-sm mb-1.5">Audio Extractor</div>
-                    <p class="text-slate-400">Decode audio streams from MP4 video files or compressed MP3 tracks and export lossless RIFF WAV waveforms directly in your browser.</p>
+                    <div data-i18n="feat3_title" class="text-indigo-400 font-bold text-sm mb-1.5">Audio Extractor</div>
+                    <p data-i18n="feat3_desc" class="text-slate-400">Decode audio streams from MP4 video files or compressed MP3 tracks and export lossless RIFF WAV waveforms directly in your browser.</p>
                 </div>
             </section>
 
             <section id="faq" class="bg-slate-900/50 border border-slate-800/80 rounded-2xl p-6 sm:p-7 space-y-4 scroll-mt-20">
-                <h2 class="text-base font-bold text-slate-100">Frequently Asked Questions</h2>
+                <h2 data-i18n="faq_title" class="text-base font-bold text-slate-100">Frequently Asked Questions</h2>
                 
                 <div class="border-b border-slate-800/80 pb-3.5">
-                    <h3 class="font-semibold text-slate-200 text-xs">Are my files ever uploaded to a cloud server?</h3>
-                    <p class="mt-1">No. You can even disconnect your internet connection after loading this page and every conversion tool will continue working normally. Zero bytes are transmitted over the network.</p>
+                    <h3 data-i18n="faq1_q" class="font-semibold text-slate-200 text-xs">Are my files ever uploaded to a cloud server?</h3>
+                    <p data-i18n="faq1_a" class="mt-1">No. You can even disconnect your internet connection after loading this page and every conversion tool will continue working normally. Zero bytes are transmitted over the network.</p>
                 </div>
 
                 <div class="border-b border-slate-800/80 pb-3.5">
-                    <h3 class="font-semibold text-slate-200 text-xs">Is there a maximum file size limit?</h3>
-                    <p class="mt-1">Because there are no server bandwidth costs or upload queues, ZeroConvert imposes no artificial file size caps. Conversion speed and capacity depend strictly on your device's available RAM and processor.</p>
+                    <h3 data-i18n="faq2_q" class="font-semibold text-slate-200 text-xs">Is there a maximum file size limit?</h3>
+                    <p data-i18n="faq2_a" class="mt-1">Because there are no server bandwidth costs or upload queues, ZeroConvert imposes no artificial file size caps. Conversion speed and capacity depend strictly on your device's available RAM and processor.</p>
                 </div>
 
                 <div class="border-b border-slate-800/80 pb-3.5">
-                    <h3 class="font-semibold text-slate-200 text-xs">Why convert images to WEBP format?</h3>
-                    <p class="mt-1">WEBP reduces image file sizes by 25% to 35% compared to traditional JPEG and PNG formats while preserving sharp visual detail, making it ideal for websites, portfolios, and faster page loads.</p>
+                    <h3 data-i18n="faq3_q" class="font-semibold text-slate-200 text-xs">Why convert images to WEBP format?</h3>
+                    <p data-i18n="faq3_a" class="mt-1">WEBP reduces image file sizes by 25% to 35% compared to traditional JPEG and PNG formats while preserving sharp visual detail, making it ideal for websites, portfolios, and faster page loads.</p>
                 </div>
 
                 <div>
-                    <h3 class="font-semibold text-slate-200 text-xs">Can I merge password-protected PDF files?</h3>
-                    <p class="mt-1">Encrypted PDFs cannot be parsed without unlocking them first. Remove password restrictions from your PDF files prior to merging them locally.</p>
+                    <h3 data-i18n="faq4_q" class="font-semibold text-slate-200 text-xs">Can I merge password-protected PDF files?</h3>
+                    <p data-i18n="faq4_a" class="mt-1">Encrypted PDFs cannot be parsed without unlocking them first. Remove password restrictions from your PDF files prior to merging them locally.</p>
                 </div>
             </section>
 
@@ -255,16 +243,15 @@
     <footer class="w-full border-t border-slate-900 bg-slate-950 py-8 px-4 mt-12">
         <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
             <div>
-                <span class="font-semibold text-slate-300">ZeroConvert</span> — 100% Client-Side Browser Utilities
+                <span class="font-semibold text-slate-300">ZeroConvert</span> — <span data-i18n="footer_tag">100% Client-Side Browser Utilities</span>
             </div>
             <div class="flex flex-wrap justify-center gap-5">
-                <a href="/privacy.html" class="hover:text-slate-300 transition">Privacy Policy</a>
-                <a href="/terms.html" class="hover:text-slate-300 transition">Terms of Service</a>
-                <a href="/contact.html" class="hover:text-slate-300 transition">Contact</a>
+                <a href="/privacy.html" data-i18n="footer_privacy" class="hover:text-slate-300 transition">Privacy Policy</a>
+                <a href="/terms.html" data-i18n="footer_terms" class="hover:text-slate-300 transition">Terms of Service</a>
+                <a href="/contact.html" data-i18n="footer_contact" class="hover:text-slate-300 transition">Contact</a>
             </div>
         </div>
     </footer>
-
     <script>
         // Prevent browser default file opening
         ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(evt => {
@@ -618,6 +605,251 @@
   function closeLegalModal() {
     document.getElementById('legalModal').classList.add('hidden');
   }
+</script>
+<script>
+const TRANSLATIONS = {
+  en: {
+    nav_badge: "100% Local Processing",
+    nav_how: "How it Works",
+    nav_privacy: "Privacy Architecture",
+    nav_faq: "FAQ",
+    ad_label: "Advertisement",
+    hero_title: "Private Browser File Converter",
+    hero_sub_1: "Drop any image, multiple PDFs, or audio/video file below.",
+    hero_sub_2: "Zero bytes are ever uploaded to a server.",
+    drop_title: "Drag & drop files here, or click to select",
+    drop_sub: "Supports PNG, JPG, WEBP • Multiple PDFs to Merge • MP4, MP3, OGG, WAV",
+    btn_clear: "Clear",
+    label_format: "Output Format",
+    opt_webp: "Convert to WEBP (Optimized)",
+    opt_png: "Convert to PNG (Lossless)",
+    opt_jpg: "Convert to JPG (Standard)",
+    opt_pdf: "Export Image to PDF",
+    label_quality: "Quality",
+    quality_hint: "Applies to JPG & WEBP compression",
+    btn_convert: "Convert & Download File",
+    priv_title: "Why Zero-Server Conversion Matters for Privacy",
+    priv_p1: "Most online file converters require you to upload your personal photos, financial PDF statements, or private recordings to a remote cloud server before processing them. Even when platforms claim to delete files after a few hours, your data still travels across external networks and resides temporarily on third-party infrastructure.",
+    priv_p2: "ZeroConvert eliminates this risk entirely. Built on modern HTML5 Canvas, Web Audio API, and client-side WebAssembly PDF libraries, every conversion executes exclusively inside your browser's local memory. Your files never leave your computer or smartphone.",
+    feat1_title: "Image & WEBP Engine",
+    feat1_desc: "Convert between PNG, JPG, and next-gen WEBP formats with adjustable compression, or wrap high-resolution images directly into clean PDF pages.",
+    feat2_title: "Local PDF Merger",
+    feat2_desc: "Combine contracts, invoices, and scanned pages into a single unified PDF document instantaneously without uploading confidential paperwork.",
+    feat3_title: "Audio Extractor",
+    feat3_desc: "Decode audio streams from MP4 video files or compressed MP3 tracks and export lossless RIFF WAV waveforms directly in your browser.",
+    faq_title: "Frequently Asked Questions",
+    faq1_q: "Are my files ever uploaded to a cloud server?",
+    faq1_a: "No. You can even disconnect your internet connection after loading this page and every conversion tool will continue working normally. Zero bytes are transmitted over the network.",
+    faq2_q: "Is there a maximum file size limit?",
+    faq2_a: "Because there are no server bandwidth costs or upload queues, ZeroConvert imposes no artificial file size caps. Conversion speed and capacity depend strictly on your device's available RAM and processor.",
+    faq3_q: "Why convert images to WEBP format?",
+    faq3_a: "WEBP reduces image file sizes by 25% to 35% compared to traditional JPEG and PNG formats while preserving sharp visual detail, making it ideal for websites, portfolios, and faster page loads.",
+    faq4_q: "Can I merge password-protected PDF files?",
+    faq4_a: "Encrypted PDFs cannot be parsed without unlocking them first. Remove password restrictions from your PDF files prior to merging them locally.",
+    footer_tag: "100% Client-Side Browser Utilities",
+    footer_privacy: "Privacy Policy",
+    footer_terms: "Terms of Service",
+    footer_contact: "Contact"
+  },
+  es: {
+    nav_badge: "Procesamiento 100% Local",
+    nav_how: "Cómo funciona",
+    nav_privacy: "Arquitectura de privacidad",
+    nav_faq: "Preguntas frecuentes",
+    ad_label: "Publicidad",
+    hero_title: "Conversor Privado de Archivos en el Navegador",
+    hero_sub_1: "Soltá cualquier imagen, varios PDF o un archivo de audio/video abajo.",
+    hero_sub_2: "Nunca se sube ni un solo byte a ningún servidor.",
+    drop_title: "Arrastrá y soltá archivos acá, o hacé clic para elegir",
+    drop_sub: "Soporta PNG, JPG, WEBP • Varios PDF para unir • MP4, MP3, OGG, WAV",
+    btn_clear: "Limpiar",
+    label_format: "Formato de salida",
+    opt_webp: "Convertir a WEBP (Optimizado)",
+    opt_png: "Convertir a PNG (Sin pérdida)",
+    opt_jpg: "Convertir a JPG (Estándar)",
+    opt_pdf: "Exportar imagen a PDF",
+    label_quality: "Calidad",
+    quality_hint: "Se aplica a la compresión JPG y WEBP",
+    btn_convert: "Convertir y descargar archivo",
+    priv_title: "Por qué la conversión sin servidores importa para tu privacidad",
+    priv_p1: "La mayoría de los conversores online te obligan a subir tus fotos personales, resúmenes bancarios en PDF o grabaciones privadas a un servidor remoto antes de procesarlos. Incluso cuando prometen borrar los archivos a las pocas horas, tus datos viajan por redes externas y quedan almacenados temporalmente en infraestructura de terceros.",
+    priv_p2: "ZeroConvert elimina este riesgo por completo. Construido sobre HTML5 Canvas, Web Audio API y librerías PDF WebAssembly del lado del cliente, cada conversión se ejecuta exclusivamente en la memoria local de tu navegador. Tus archivos nunca salen de tu computadora o celular.",
+    feat1_title: "Motor de Imágenes y WEBP",
+    feat1_desc: "Convertí entre PNG, JPG y WEBP con compresión ajustable, o convertí imágenes de alta resolución directamente en páginas PDF limpias.",
+    feat2_title: "Unificador Local de PDF",
+    feat2_desc: "Combiná contratos, facturas y páginas escaneadas en un único documento PDF al instante sin subir documentación confidencial.",
+    feat3_title: "Extractor de Audio",
+    feat3_desc: "Decodificá pistas de audio desde videos MP4 o archivos MP3 comprimidos y exportá audio WAV RIFF sin pérdida directamente en tu navegador.",
+    faq_title: "Preguntas frecuentes",
+    faq1_q: "¿Mis archivos se suben alguna vez a un servidor en la nube?",
+    faq1_a: "No. Incluso podés desconectar internet después de cargar esta página y todas las herramientas seguirán funcionando con normalidad. Se transmiten cero bytes por la red.",
+    faq2_q: "¿Hay un límite máximo de tamaño de archivo?",
+    faq2_a: "Como no hay costos de ancho de banda ni colas de subida en servidores, ZeroConvert no impone límites artificiales. La velocidad y capacidad dependen exclusivamente de la memoria RAM y el procesador de tu dispositivo.",
+    faq3_q: "¿Por qué convertir imágenes a formato WEBP?",
+    faq3_a: "WEBP reduce el peso de las imágenes entre un 25% y un 35% frente a JPEG y PNG tradicionales conservando gran nitidez visual, ideal para sitios web y cargas más rápidas.",
+    faq4_q: "¿Puedo unir archivos PDF protegidos con contraseña?",
+    faq4_a: "Los PDF encriptados no pueden procesarse sin desbloquearlos antes. Quitá la restricción de contraseña de tus archivos PDF antes de unirlos localmente.",
+    footer_tag: "Utilidades 100% del lado del cliente en el navegador",
+    footer_privacy: "Política de privacidad",
+    footer_terms: "Términos del servicio",
+    footer_contact: "Contacto"
+  },
+  pt: {
+    nav_badge: "Processamento 100% Local",
+    nav_how: "Como funciona",
+    nav_privacy: "Arquitetura de Privacidade",
+    nav_faq: "Perguntas Frequentes",
+    ad_label: "Publicidade",
+    hero_title: "Conversor Privado de Arquivos no Navegador",
+    hero_sub_1: "Solte qualquer imagem, vários PDFs ou arquivo de áudio/vídeo abaixo.",
+    hero_sub_2: "Zero bytes são enviados para qualquer servidor.",
+    drop_title: "Arraste e solte arquivos aqui ou clique para selecionar",
+    drop_sub: "Suporta PNG, JPG, WEBP • Vários PDFs para juntar • MP4, MP3, OGG, WAV",
+    btn_clear: "Limpar",
+    label_format: "Formato de saída",
+    opt_webp: "Converter para WEBP (Otimizado)",
+    opt_png: "Converter para PNG (Sem perdas)",
+    opt_jpg: "Converter para JPG (Padrão)",
+    opt_pdf: "Exportar imagem para PDF",
+    label_quality: "Qualidade",
+    quality_hint: "Aplica-se à compressão JPG e WEBP",
+    btn_convert: "Converter e baixar arquivo",
+    priv_title: "Por que a conversão sem servidor importa para a privacidade",
+    priv_p1: "A maioria dos conversores online exige que você envie suas fotos pessoais, extratos em PDF ou gravações privadas para um servidor remoto antes de processá-los. Mesmo quando prometem excluir os arquivos após algumas horas, seus dados trafegam por redes externas e ficam temporariamente em servidores de terceiros.",
+    priv_p2: "O ZeroConvert elimina esse risco completamente. Desenvolvido com HTML5 Canvas, Web Audio API e bibliotecas PDF WebAssembly no navegador, cada conversão ocorre exclusivamente na memória local do seu dispositivo. Seus arquivos nunca saem do seu computador ou celular.",
+    feat1_title: "Motor de Imagem e WEBP",
+    feat1_desc: "Converta entre PNG, JPG e WEBP com compressão ajustável ou transforme imagens de alta resolução diretamente em páginas PDF limpas.",
+    feat2_title: "Mesclador Local de PDF",
+    feat2_desc: "Combine contratos, faturas e páginas digitalizadas em um único documento PDF instantaneamente sem enviar documentos confidenciais.",
+    feat3_title: "Extrator de Áudio",
+    feat3_desc: "Decodifique faixas de áudio de vídeos MP4 ou arquivos MP3 e exporte ondas WAV RIFF sem perdas diretamente no navegador.",
+    faq_title: "Perguntas Frequentes",
+    faq1_q: "Meus arquivos são enviados para algum servidor na nuvem?",
+    faq1_a: "Não. Você pode até desconectar a internet após carregar esta página e todas as ferramentas continuarão funcionando normalmente. Zero bytes são transmitidos pela rede.",
+    faq2_q: "Existe um limite máximo de tamanho de arquivo?",
+    faq2_a: "Como não há custos de servidor nem filas de upload, o ZeroConvert não impõe limites artificiais de tamanho. A velocidade depende apenas da RAM e do processador do seu dispositivo.",
+    faq3_q: "Por que converter imagens para o formato WEBP?",
+    faq3_a: "O WEBP reduz o tamanho das imagens em 25% a 35% em comparação com JPEG e PNG tradicionais mantendo alta nitidez visual, ideal para sites e carregamento rápido.",
+    faq4_q: "Posso juntar arquivos PDF protegidos por senha?",
+    faq4_a: "PDFs criptografados não podem ser processados sem serem desbloqueados antes. Remova a senha dos arquivos PDF antes de mesclá-los localmente.",
+    footer_tag: "Utilitários 100% no navegador do cliente",
+    footer_privacy: "Política de Privacidade",
+    footer_terms: "Termos de Serviço",
+    footer_contact: "Contato"
+  },
+  it: {
+    nav_badge: "Elaborazione 100% Locale",
+    nav_how: "Come funziona",
+    nav_privacy: "Architettura Privacy",
+    nav_faq: "FAQ",
+    ad_label: "Pubblicità",
+    hero_title: "Convertitore Privato di File nel Browser",
+    hero_sub_1: "Trascina qui immagini, più PDF o file audio/video.",
+    hero_sub_2: "Zero byte vengono mai caricati su un server.",
+    drop_title: "Trascina e rilascia i file qui, oppure clicca per selezionare",
+    drop_sub: "Supporta PNG, JPG, WEBP • Più PDF da unire • MP4, MP3, OGG, WAV",
+    btn_clear: "Cancella",
+    label_format: "Formato di uscita",
+    opt_webp: "Converti in WEBP (Ottimizzato)",
+    opt_png: "Converti in PNG (Senza perdita)",
+    opt_jpg: "Converti in JPG (Standard)",
+    opt_pdf: "Esporta immagine in PDF",
+    label_quality: "Qualità",
+    quality_hint: "Si applica alla compressione JPG e WEBP",
+    btn_convert: "Converti e scarica file",
+    priv_title: "Perché la conversione senza server è fondamentale per la privacy",
+    priv_p1: "La maggior parte dei convertitori online richiede di caricare foto personali, estratti conto PDF o registrazioni private su un server remoto prima di elaborarli. Anche quando promettono di eliminare i file dopo poche ore, i tuoi dati viaggiano su reti esterne e restano temporaneamente su server di terze parti.",
+    priv_p2: "ZeroConvert elimina completamente questo rischio. Basato su HTML5 Canvas, Web Audio API e librerie PDF WebAssembly lato client, ogni conversione avviene esclusivamente nella memoria locale del tuo browser. I tuoi file non lasciano mai il tuo computer o smartphone.",
+    feat1_title: "Motore Immagini e WEBP",
+    feat1_desc: "Converti tra PNG, JPG e WEBP con compressione regolabile, oppure racchiudi immagini ad alta risoluzione direttamente in pagine PDF pulite.",
+    feat2_title: "Unione PDF Locale",
+    feat2_desc: "Unisci contratti, fatture e pagine scansionate in un unico documento PDF all'istante senza caricare documenti riservati.",
+    feat3_title: "Estrattore Audio",
+    feat3_desc: "Decodifica flussi audio da video MP4 o tracce MP3 ed esporta file WAV RIFF senza perdita direttamente nel browser.",
+    faq_title: "Domande Frequenti",
+    faq1_q: "I miei file vengono mai caricati su un server cloud?",
+    faq1_a: "No. Puoi persino scollegare internet dopo aver caricato questa pagina e tutti gli strumenti continueranno a funzionare normalmente. Zero byte vengono trasmessi in rete.",
+    faq2_q: "C'è un limite massimo alla dimensione dei file?",
+    faq2_a: "Poiché non ci sono costi di banda o code di caricamento su server, ZeroConvert non impone limiti artificiali. Velocità e capacità dipendono esclusivamente dalla RAM e dal processore del tuo dispositivo.",
+    faq3_q: "Perché convertire le immagini in formato WEBP?",
+    faq3_a: "WEBP riduce le dimensioni dei file immagine del 25-35% rispetto a JPEG e PNG tradizionali mantenendo dettagli nitidi, ideale per siti web e caricamenti più rapidi.",
+    faq4_q: "Posso unire file PDF protetti da password?",
+    faq4_a: "I PDF crittografati non possono essere elaborati senza prima sbloccarli. Rimuovi la protezione con password prima di unirli localmente.",
+    footer_tag: "Utilità browser 100% lato client",
+    footer_privacy: "Informativa sulla Privacy",
+    footer_terms: "Termini di Servizio",
+    footer_contact: "Contatti"
+  },
+  ja: {
+    nav_badge: "100% ローカル処理",
+    nav_how: "使い方",
+    nav_privacy: "プライバシー設計",
+    nav_faq: "よくある質問",
+    ad_label: "広告",
+    hero_title: "プライベート・ブラウザファイル変換",
+    hero_sub_1: "画像、複数のPDF、または音声・動画ファイルを下にドロップしてください。",
+    hero_sub_2: "サーバーへのアップロードは一切行われません（0バイト送信）。",
+    drop_title: "ここにファイルをドラッグ＆ドロップ、またはクリックして選択",
+    drop_sub: "PNG, JPG, WEBP 対応 • 複数PDFの結合 • MP4, MP3, OGG, WAV",
+    btn_clear: "クリア",
+    label_format: "出力形式",
+    opt_webp: "WEBP に変換（最適化）",
+    opt_png: "PNG に変換（可逆圧縮）",
+    opt_jpg: "JPG に変換（標準）",
+    opt_pdf: "画像を PDF に書き出し",
+    label_quality: "画質",
+    quality_hint: "JPG と WEBP の圧縮に適用されます",
+    btn_convert: "変換してダウンロード",
+    priv_title: "サーバーを使わない変換がプライバシーに重要な理由",
+    priv_p1: "多くのオンライン変換サイトでは、処理の前に個人の写真、金融機関のPDF明細、プライベートな録音データを外部のクラウドサーバーへアップロードする必要があります。数時間後に削除すると謳っていても、データは外部ネットワークを経由し、第三者のサーバーに一時保存されます。",
+    priv_p2: "ZeroConvert はこのリスクを完全に排除します。最新の HTML5 Canvas、Web Audio API、クライアント側 WebAssembly PDF ライブラリにより、すべての変換処理はブラウザのローカルメモリ内のみで完結します。ファイルがパソコンやスマートフォンから外部へ送信されることは一切ありません。",
+    feat1_title: "画像 & WEBP エンジン",
+    feat1_desc: "圧縮率を調整しながら PNG、JPG、次世代 WEBP 形式を相互変換したり、高解像度画像をそのままきれいな PDF ページにまとめたりできます。",
+    feat2_title: "ローカル PDF 結合",
+    feat2_desc: "契約書、請求書、スキャンしたページを機密書類をアップロードすることなく、その場で1つの PDF に瞬時に結合します。",
+    feat3_title: "音声抽出ツール",
+    feat3_desc: "MP4 動画や圧縮された MP3 から音声ストリームをデコードし、非圧縮の RIFF WAV 波形をブラウザ内で直接書き出します。",
+    faq_title: "よくある質問",
+    faq1_q: "ファイルがクラウドサーバーにアップロードされることはありますか？",
+    faq1_a: "いいえ、ありません。このページを読み込んだ後にインターネット接続を切断しても、すべての変換ツールは正常に動作します。ネットワーク経由で送信されるデータは0バイトです。",
+    faq2_q: "ファイルサイズの上限はありますか？",
+    faq2_a: "サーバーの通信コストやアップロード待ち行列がないため、ZeroConvert には人為的なサイズ制限がありません。変換速度と容量はお使いの端末の RAM とプロセッサ性能にのみ依存します。",
+    faq3_q: "画像を WEBP 形式に変換するメリットは何ですか？",
+    faq3_a: "WEBP は鮮明な画質を保ったまま、従来の JPEG や PNG と比べてファイルサイズを 25%〜35% 削減できるため、Webサイトやポートフォリオの高速化に最適です。",
+    faq4_q: "パスワード保護された PDF を結合できますか？",
+    faq4_a: "暗号化された PDF はロックを解除しない限り解析できません。ローカルで結合する前に PDF のパスワード制限を解除してください。",
+    footer_tag: "100% クライアントサイド・ブラウザユーティリティ",
+    footer_privacy: "プライバシーポリシー",
+    footer_terms: "利用規約",
+    footer_contact: "お問い合わせ"
+  }
+};
+
+function setLanguage(lang) {
+  const dict = TRANSLATIONS[lang] || TRANSLATIONS.en;
+  document.documentElement.lang = lang;
+
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    const key = el.getAttribute("data-i18n");
+    if (dict[key]) {
+      el.textContent = dict[key];
+    }
+  });
+
+  document.querySelectorAll("[data-lang-btn]").forEach((btn) => {
+    const isActive = btn.getAttribute("data-lang-btn") === lang;
+    btn.classList.toggle("bg-indigo-600/30", isActive);
+    btn.classList.toggle("ring-1", isActive);
+    btn.classList.toggle("ring-indigo-400", isActive);
+  });
+
+  localStorage.setItem("zeroconvert_lang", lang);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const saved = localStorage.getItem("zeroconvert_lang");
+  setLanguage(saved && TRANSLATIONS[saved] ? saved : "en");
+});
 </script>
 </body>
 </html>
