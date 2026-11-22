@@ -70,12 +70,51 @@
             <p class="text-sm text-slate-400 mt-2.5 max-w-lg mx-auto leading-relaxed">
                 Drop any image, multiple PDFs, or audio/video file below. <span class="text-slate-200 font-medium">Zero bytes are ever uploaded to a server.</span>
             </p>
-            <div id="lang-switcher" class="flex items-center gap-1.5 bg-slate-900/90 border border-slate-800 rounded-lg px-2 py-1">
-  <button type="button" onclick="setLanguage('en')" data-lang-btn="en" title="English" class="px-1.5 py-0.5 rounded text-sm hover:bg-slate-800 transition cursor-pointer">🇺🇸</button>
-  <button type="button" onclick="setLanguage('es')" data-lang-btn="es" title="Español" class="px-1.5 py-0.5 rounded text-sm hover:bg-slate-800 transition cursor-pointer">🇪🇸</button>
-  <button type="button" onclick="setLanguage('pt')" data-lang-btn="pt" title="Português" class="px-1.5 py-0.5 rounded text-sm hover:bg-slate-800 transition cursor-pointer">🇧🇷</button>
-  <button type="button" onclick="setLanguage('it')" data-lang-btn="it" title="Italiano" class="px-1.5 py-0.5 rounded text-sm hover:bg-slate-800 transition cursor-pointer">🇮🇹</button>
-  <button type="button" onclick="setLanguage('ja')" data-lang-btn="ja" title="日本語" class="px-1.5 py-0.5 rounded text-sm hover:bg-slate-800 transition cursor-pointer">🇯🇵</button>
+            <div id="lang-switcher" class="fixed top-4 right-4 z-50 flex items-center gap-1 bg-slate-900/95 border border-slate-800 rounded-xl px-2 py-1.5 shadow-lg">
+  <button type="button" onclick="setLanguage('en')" data-lang-btn="en" title="English" aria-label="English" class="p-1 rounded-lg hover:bg-slate-800 transition cursor-pointer">
+    <!-- US Flag -->
+    <svg class="w-5 h-3.5 rounded-[2px] block" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg">
+      <rect width="24" height="16" fill="#fff"/>
+      <path fill="#b22234" d="M0 0h24v1.23H0zm0 2.46h24v1.23H0zm0 2.46h24v1.23H0zm0 2.46h24v1.23H0zm0 2.46h24v1.23H0zm0 2.46h24v1.23H0zm0 2.46h24V16H0z"/>
+      <rect width="10" height="8.6" fill="#3c3b6e"/>
+    </svg>
+  </button>
+
+  <button type="button" onclick="setLanguage('es')" data-lang-btn="es" title="Español" aria-label="Español" class="p-1 rounded-lg hover:bg-slate-800 transition cursor-pointer">
+    <!-- Spain Flag -->
+    <svg class="w-5 h-3.5 rounded-[2px] block" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg">
+      <rect width="24" height="16" fill="#aa151b"/>
+      <rect y="4" width="24" height="8" fill="#f1bf00"/>
+    </svg>
+  </button>
+
+  <button type="button" onclick="setLanguage('pt')" data-lang-btn="pt" title="Português" aria-label="Português" class="p-1 rounded-lg hover:bg-slate-800 transition cursor-pointer">
+    <!-- Brazil Flag -->
+    <svg class="w-5 h-3.5 rounded-[2px] block" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg">
+      <rect width="24" height="16" fill="#009b3a"/>
+      <polygon points="12,2 21.5,8 12,14 2.5,8" fill="#ffdf00"/>
+      <circle cx="12" cy="8" r="3.4" fill="#002776"/>
+    </svg>
+  </button>
+
+  <button type="button" onclick="setLanguage('it')" data-lang-btn="it" title="Italiano" aria-label="Italiano" class="p-1 rounded-lg hover:bg-slate-800 transition cursor-pointer">
+    <!-- Italy Flag -->
+    <svg class="w-5 h-3.5 rounded-[2px] block" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg">
+      <rect width="8" height="16" x="0" fill="#009246"/>
+      <rect width="8" height="16" x="8" fill="#fff"/>
+      <rect width="8" height="16" x="16" fill="#ce2b37"/>
+    </svg>
+  </button>
+
+  <button type="button" onclick="setLanguage('ja')" data-lang-btn="ja" title="日本語" aria-label="日本語" class="p-1 rounded-lg hover:bg-slate-800 transition cursor-pointer">
+    <!-- Japan Flag -->
+    <svg class="w-5 h-3.5 rounded-[2px] block" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg">
+      <rect width="24" height="16" fill="#fff"/>
+      <circle cx="12" cy="8" r="4.2" fill="#bc002d"/>
+    </svg>
+  </button>
+</div>
+  
 </div>
         </header>
 
@@ -580,5 +619,4 @@
   }
 </script>
 </body>
-    
 </html>
