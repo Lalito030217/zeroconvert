@@ -7,6 +7,8 @@
     <meta name="description" content="Convert PNG, JPG, WEBP, merge PDFs, and extract WAV audio 100% locally in your browser. Zero server uploads, instant processing, complete privacy.">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';</script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -156,6 +158,22 @@
                             <option value="image/jpeg" data-i18n="opt_jpg">Convert to JPG (Standard)</option>
                             <option value="topdf" data-i18n="opt_pdf">Export Image to PDF</option>
                         </select>
+                        <!-- Single PDF Specific Options -->
+                <div id="singlePdfOptions" class="hidden grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label data-i18n="label_pdf_action" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">PDF Action</label>
+                        <select id="singlePdfAction" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-xs text-slate-200 focus:outline-none focus:border-indigo-500 transition">
+                            <option value="image/jpeg" data-i18n="opt_pdf_jpg">Convert Pages to JPG</option>
+                            <option value="image/png" data-i18n="opt_pdf_png">Convert Pages to PNG</option>
+                            <option value="image/webp" data-i18n="opt_pdf_webp">Convert Pages to WEBP</option>
+                            <option value="txt" data-i18n="opt_pdf_txt">Extract Plain Text (.txt)</option>
+                        </select>
+                    </div>
+                    <div class="flex flex-col justify-center bg-slate-950/60 border border-slate-800 rounded-xl px-4 py-3">
+                        <span class="text-xs font-semibold text-slate-200" data-i18n="pdf_multi_hint_title">Want to merge PDFs?</span>
+                        <span class="text-[11px] text-slate-400 mt-0.5" data-i18n="pdf_multi_hint_desc">Select or drop 2 or more PDF files at once to merge them.</span>
+                    </div>
+                </div>
                     </div>
                     <div id="qualityWrapper">
                         <div class="flex justify-between items-center mb-2">
@@ -270,6 +288,7 @@
         const detectedTypeBadge = document.getElementById('detectedTypeBadge');
         const selectedFileSummary = document.getElementById('selectedFileSummary');
         const imageOptions = document.getElementById('imageOptions');
+        const singlePdfOptions = document.getElementById('singlePdfOptions');
         const btnConvertAction = document.getElementById('btnConvertAction');
         const statusBox = document.getElementById('statusBox');
 
@@ -284,18 +303,6 @@
                 statusBox.classList.add('bg-amber-500/10', 'text-amber-300', 'border-amber-500/30');
             }
         }
-
-        function triggerDownload(blob, fileName) {
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = fileName;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            setTimeout(() => URL.revokeObjectURL(url), 1000);
-        }
-
         function handleIncomingFiles(fileList) {
             const files = Array.from(fileList);
             if (!files.length) return;
@@ -310,27 +317,37 @@
                 detectedTypeBadge.textContent = 'IMAGE';
                 selectedFileSummary.textContent = first.name;
                 imageOptions.classList.remove('hidden');
+                singlePdfOptions.classList.add('hidden');
                 btnConvertAction.textContent = 'Convert & Download Image';
                 dynamicControls.classList.remove('hidden');
             } else if (first.type === 'application/pdf' || nameLower.endsWith('.pdf')) {
                 const pdfs = files.filter(f => f.type === 'application/pdf' || f.name.toLowerCase().endsWith('.pdf'));
-                if (pdfs.length < 2) {
-                    dynamicControls.classList.add('hidden');
-                    return showStatus('Drop or select at least 2 PDF files to merge them.', 'error');
+                if (pdfs.length === 1) {
+                    activeMode = 'single_pdf';
+                    activeFiles = [pdfs[0]];
+                    detectedTypeBadge.textContent = 'PDF CONVERT';
+                    selectedFileSummary.textContent = pdfs[0].name;
+                    imageOptions.classList.add('hidden');
+                    singlePdfOptions.classList.remove('hidden');
+                    btnConvertAction.textContent = 'Convert & Download PDF';
+                    dynamicControls.classList.remove('hidden');
+                } else {
+                    activeMode = 'pdf';
+                    activeFiles = pdfs;
+                    detectedTypeBadge.textContent = 'PDF MERGE';
+                    selectedFileSummary.textContent = `${pdfs.length} PDF documents ready to merge`;
+                    imageOptions.classList.add('hidden');
+                    singlePdfOptions.classList.add('hidden');
+                    btnConvertAction.textContent = `Merge ${pdfs.length} PDFs & Download`;
+                    dynamicControls.classList.remove('hidden');
                 }
-                activeMode = 'pdf';
-                activeFiles = pdfs;
-                detectedTypeBadge.textContent = 'PDF MERGE';
-                selectedFileSummary.textContent = `${pdfs.length} PDF documents ready to merge`;
-                imageOptions.classList.add('hidden');
-                btnConvertAction.textContent = `Merge ${pdfs.length} PDFs & Download`;
-                dynamicControls.classList.remove('hidden');
             } else if (first.type.startsWith('audio/') || first.type.startsWith('video/') || /\.(mp3|mp4|wav|ogg|m4a|webm|mov)$/i.test(nameLower)) {
                 activeMode = 'audio';
                 activeFiles = [first];
                 detectedTypeBadge.textContent = 'AUDIO EXTRACT';
                 selectedFileSummary.textContent = first.name;
                 imageOptions.classList.add('hidden');
+                singlePdfOptions.classList.add('hidden');
                 btnConvertAction.textContent = 'Extract Uncompressed WAV & Download';
                 dynamicControls.classList.remove('hidden');
             } else {
@@ -338,7 +355,6 @@
                 showStatus('Unsupported file format. Please drop an image, PDFs, or audio/video file.', 'error');
             }
         }
-
         dropZone.addEventListener('click', () => {
             fileInput.value = '';
             fileInput.click();
