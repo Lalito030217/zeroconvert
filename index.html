@@ -9,6 +9,8 @@
     <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';</script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -183,6 +185,22 @@
                         <input type="range" id="imageQuality" min="0.1" max="1" step="0.05" value="0.9" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-indigo-500 mt-2.5">
                         <p data-i18n="quality_hint" class="text-[10px] text-slate-500 mt-1.5">Applies to JPG & WEBP compression</p>
                     </div>
+                    <!-- Single PDF Specific Options -->
+                <div id="singlePdfOptions" class="hidden grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label data-i18n="label_pdf_action" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">PDF Action</label>
+                        <select id="singlePdfAction" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-xs text-slate-200 focus:outline-none focus:border-indigo-500 transition">
+                            <option value="image/jpeg" data-i18n="opt_pdf_jpg">Convert Pages to JPG</option>
+                            <option value="image/png" data-i18n="opt_pdf_png">Convert Pages to PNG</option>
+                            <option value="image/webp" data-i18n="opt_pdf_webp">Convert Pages to WEBP</option>
+                            <option value="txt" data-i18n="opt_pdf_txt">Extract Plain Text (.txt)</option>
+                        </select>
+                    </div>
+                    <div class="flex flex-col justify-center bg-slate-950/60 border border-slate-800 rounded-xl px-4 py-3">
+                        <span class="text-xs font-semibold text-slate-200" data-i18n="pdf_multi_hint_title">Want to merge PDFs?</span>
+                        <span class="text-[11px] text-slate-400 mt-0.5" data-i18n="pdf_multi_hint_desc">Select or drop 2 or more PDF files at once to merge them.</span>
+                    </div>
+                </div>
                 </div>
 
                 <!-- Primary Action Button -->
@@ -288,6 +306,7 @@
         const detectedTypeBadge = document.getElementById('detectedTypeBadge');
         const selectedFileSummary = document.getElementById('selectedFileSummary');
         const imageOptions = document.getElementById('imageOptions');
+        const singlePdfOptions = document.getElementById('singlePdfOptions');
         const singlePdfOptions = document.getElementById('singlePdfOptions');
         const btnConvertAction = document.getElementById('btnConvertAction');
         const statusBox = document.getElementById('statusBox');
@@ -463,6 +482,48 @@
                 } catch (err) {
                     console.error(err);
                     showStatus('Error merging PDFs. Make sure none are password-protected.', 'error');
+                }
+                } else if (activeMode === 'single_pdf') {
+                const file = activeFiles[0];
+                const action = document.getElementById('singlePdfAction').value;
+                const baseName = file.name.replace(/\.[^/.]+$/, "");
+                showStatus('Processing PDF locally in your browser...', 'info');
+
+                try {
+                    const arrayBuffer = await file.arrayBuffer();
+                    const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+                    const totalPages = pdf.numPages;
+
+                    if (action === 'txt') {
+                        let fullText = '';
+                        for (let i = 1; i <= totalPages; i++) {
+                            const page = await pdf.getPage(i);
+                            const textContent = await page.getTextContent();
+                            const pageText = textContent.items.map(item => item.str).join(' ');
+                            fullText += `--- Page ${i} ---\n${pageText}\n\n`;
+                        }
+                        triggerDownload(new Blob([fullText], { type: 'text/plain;charset=utf-8' }), `${baseName}.txt`);
+                        showStatus(`Done! Extracted text from ${totalPages} page(s).`, 'success');
+                    } else {
+                        const ext = action === 'image/jpeg' ? 'jpg' : action.split('/')[1];
+                        for (let i = 1; i <= totalPages; i++) {
+                            const page = await pdf.getPage(i);
+                            const viewport = page.getViewport({ scale: 2.0 });
+                            const canvas = document.createElement('canvas');
+                            canvas.width = viewport.width;
+                            canvas.height = viewport.height;
+                            const ctx = canvas.getContext('2d');
+                            await page.render({ canvasContext: ctx, viewport: viewport }).promise;
+
+                            const blob = await new Promise(resolve => canvas.toBlob(resolve, action, 0.92));
+                            const suffix = totalPages > 1 ? `-page-${i}` : '';
+                            triggerDownload(blob, `${baseName}${suffix}.${ext}`);
+                        }
+                        showStatus(`Done! Converted ${totalPages} page(s) to ${ext.toUpperCase()}.`, 'success');
+                    }
+                } catch (err) {
+                    console.error(err);
+                    showStatus('Error converting PDF. Make sure it is not password-protected.', 'error');
                 }
             } else if (activeMode === 'audio') {
                 const file = activeFiles[0];
