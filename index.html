@@ -586,6 +586,16 @@
 
             return new Blob([out], { type: 'audio/wav' });
         }
+    function triggerDownload(blob, filename) {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(url), 1000);
+        }
     </script>
     <!-- SEO & Legal Footer + Modals for AdSense Compliance -->
 <footer class="border-t border-slate-800 bg-slate-950/80 text-slate-400 text-sm mt-16">
