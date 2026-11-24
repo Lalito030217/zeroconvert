@@ -1,15 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZeroConvert — Free Private Client-Side File Converter (Images, PDF & Audio)</title>
     <meta name="description" content="Convert PNG, JPG, WEBP, merge PDFs, and extract WAV audio 100% locally in your browser. Zero server uploads, instant processing, complete privacy.">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://zeroconvert.online/">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="ZeroConvert">
+    <meta property="og:title" content="ZeroConvert — Free Private Client-Side File Converter">
+    <meta property="og:description" content="Convert PNG, JPG, WEBP, merge PDFs, and extract WAV audio 100% locally in your browser. Zero server uploads, complete privacy.">
+    <meta property="og:url" content="https://zeroconvert.online/">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="ZeroConvert — Free Private Client-Side File Converter">
+    <meta name="twitter:description" content="Convert PNG, JPG, WEBP, merge PDFs, and extract WAV audio 100% locally in your browser. Zero server uploads.">
+
+    <!-- Styles & Libraries -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-    <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';</script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,18 +32,28 @@
     <style>
         body { font-family: 'Inter', sans-serif; }
     </style>
+
+    <!-- Structured Data (Schema.org) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       "name": "ZeroConvert",
+      "url": "https://zeroconvert.online/",
       "operatingSystem": "Web Browser",
+      "browserRequirements": "Requires JavaScript and a modern web browser (Chrome, Firefox, Safari, Edge)",
       "applicationCategory": "UtilitiesApplication",
       "offers": {
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "USD"
       },
+      "featureList": [
+        "Convert PNG, JPG, and WEBP images locally",
+        "Merge multiple PDF files in the browser",
+        "Extract WAV audio from video/audio files client-side",
+        "100% offline-capable local processing with zero server uploads"
+      ],
       "description": "Free client-side browser file converter for PNG, JPG, WEBP images, PDF merging, and WAV audio extraction with zero server uploads."
     }
     </script>
